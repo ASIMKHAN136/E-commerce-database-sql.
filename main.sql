@@ -102,3 +102,35 @@ insert into order_items (order_id, product_id, quantity, unit_price) values
 (12, 9, 2, 1400.00),
 (13, 12, 1, 2100.00),
 (13, 5, 1, 3200.00);
+
+select * from customers;
+select * from categories;
+select * from products;
+select * from orders;
+select * from order_items;
+
+select p.product_name,
+        sum(oi.quantity) as total_quantity_sold
+        from products p inner join order_items oi on p.product_id = oi.product_id 
+        group by p.product_name order by total_quantity_sold 
+        desc limit 5;
+select c.city,
+c.frist_name,
+        max(o.total_amount)
+        from customers c inner join orders o on c.customer_id = o.customer_id group by c.city,c.frist_name ;
+select c.email,
+		c.city,
+        sum(o.total_amount) as total_revenue
+		from customers c inner join orders o on c.customer_id = o.order_id group by c.city,c.email order by total_amount desc;
+select product_id,product_name, stock_quantity from products where stock_quantity < 10;
+select p.product_name,
+		o.order_id,
+        o.customer_id,
+        o.total_amount
+        from orders o left join  products p on p.product_id = o.order_id where order_id is null;
+select c.customer_id,
+		c.frist_name,
+        c.email,
+        count(o.order_id) as total_orders,
+        o.total_amount
+        from customers c left join orders o on c.customer_id = o.order_id group by c.customer_id,c.frist_name;

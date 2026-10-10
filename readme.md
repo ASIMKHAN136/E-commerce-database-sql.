@@ -71,3 +71,11 @@ Note: the script turns foreign key checks off at the top
 ## How to run
 1. Open MySQL (Workbench, CLI, or phpMyAdmin)
 2. Run main.sql from top to bottom
+
+## Queries Included
+- Best-selling products (total quantity sold, top 5)
+- Highest order amount per customer and city
+- Total revenue per customer
+- Low stock products (fewer than 10 left)
+- Number of orders per customer
+- Techniques used: INNER JOIN, LEFT JOIN, GROUP BY, SUM, MAX, COUNT, ORDER BY, LIMIT
